@@ -6,11 +6,13 @@ class Initial < ActiveRecord::Migration
       t.string  :salt, :crypted_password, :limit => 40
       t.string  :school, :city
       t.string  :state, :limit => 3
+      t.column :remember_token,            :string
+      t.column :remember_token_expires_at, :datetime
       t.timestamps      
     end
     
     # defines a has_and_belongs_to_many relation 
-    create_table "users_classrooms", :id => false , :force => true do |t|      
+    create_table "classrooms_users", :id => false , :force => true do |t|      
       t.integer  :user_id
       t.integer  :classroom_id
     end
@@ -27,7 +29,7 @@ class Initial < ActiveRecord::Migration
     end
     
     # defines a has_and_belongs_to_many relation 
-    create_table "students_classrooms", :id => false , :force => true do |t|      
+    create_table "classrooms_students", :id => false , :force => true do |t|      
       t.integer  :student_id
       t.integer  :classroom_id  
     end
@@ -70,7 +72,7 @@ class Initial < ActiveRecord::Migration
     end
 
     # defines a has_and_belongs_to_many relation 
-    create_table "students_diario_de_classe_posts", :id => false , :force => true do |t|      
+    create_table "diario_de_classe_posts_students", :id => false , :force => true do |t|      
       t.integer  :diario_de_classe_post_id
       t.integer  :student_id
     end
@@ -79,15 +81,15 @@ class Initial < ActiveRecord::Migration
   end
   def self.down
     drop_table "users"
-    drop_table "users_subscribes"
+    drop_table "classrooms_users"
     drop_table "students"
-    drop_table "students_classrooms"
+    drop_table "classrooms_students"
     drop_table "classrooms"
     drop_table "diario_de_classe_posts"
     drop_table "parameters"
     drop_table "diario_de_classe_posts_parameters"
     drop_table "classrooms_parameters"
     drop_table "classrooms_diario_de_classe_posts"
-    drop_table "students_diario_de_classe_posts"
+    drop_table "diario_de_classe_posts_students"
   end
 end
