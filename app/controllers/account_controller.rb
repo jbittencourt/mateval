@@ -14,6 +14,9 @@ class AccountController < ApplicationController
     self.current_user = User.authenticate(params[:username], params[:password])
     if logged_in?
       if params[:remember_me] == "1"
+        # a trick to get the user stored in the session
+        User.current_user = self.current_user
+        #-----------------------------------------------
         self.current_user.remember_me
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
