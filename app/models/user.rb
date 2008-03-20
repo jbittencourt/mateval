@@ -57,22 +57,16 @@ class User < ActiveRecord::Base
 
 #------------------------------------------------------------------------------------------------------------------------------
 
-   # list_classrooms - retorna uma lista com as turmas atrelhadas ao professor
-	def list_classrooms
-		
-		# acha todas as turmas onde o id do usuário pesquisado é igual ao id do usuário na tabela classrooms_users
-		croom = ClassroomUser.find(:all, :conditions => "user_id =" + self.id.to_s)
-		
-		# para cada turma encontrada, pesquisa-se o nome da determinada turma através do seu id (na tabela classrooms)
-		croom.each do |cr|
-			clroom = Classroom.find(:all, :conditions => "id = " + cr.classroom_id.to_s)
-			clroom.each do |cr2|
-				y cr2.name
-			end
-		end
+   # list_classrooms
+	# Retorna uma lista com as turmas atrelhadas ao professor, recebendo como parâmetro o ano das turmas a serem listadas.
+	# Caso o usuário não passe nenhum parâmetro, é inferido que o ano corresponde ao ano atual.
 
-	end # end list_classrooms
+	def list_classrooms(year = Date.today.to_s[0,4])
+		
+		all_classrooms = self.classrooms.find(:all, :conditions => "year = '#{year}'")
 
+	end
+	
 #------------------------------------------------------------------------------------------------------------------------------
 
   protected
