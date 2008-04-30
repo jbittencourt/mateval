@@ -1,5 +1,6 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
+  has_many :plannings
   has_and_belongs_to_many :classrooms
   
   # a trick to get the user stored in the session
