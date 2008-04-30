@@ -9,7 +9,7 @@ class Initial < ActiveRecord::Migration
       t.column :remember_token,            :string
       t.column :remember_token_expires_at, :datetime
       t.timestamps      
-    end
+  end
     
     # defines a has_and_belongs_to_many relation 
     create_table "classrooms_users", :id => false , :force => true do |t|      
