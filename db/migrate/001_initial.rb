@@ -1,7 +1,7 @@
 class Initial < ActiveRecord::Migration
   def self.up
     create_table "users", :force => true do |t|
-      t.string  :name,  :null => false
+      t.string  :name
       t.string  :username, :email
       t.string  :salt, :crypted_password, :limit => 40
       t.string  :school, :city

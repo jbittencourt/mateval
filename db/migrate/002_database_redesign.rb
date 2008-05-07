@@ -19,6 +19,7 @@ class DatabaseRedesign < ActiveRecord::Migration
       t.timestamps      
     end
     
+    drop_table "classrooms"
     create_table "classrooms", :force => false do |t|
       t.string   :name
       t.timestamps      

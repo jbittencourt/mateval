@@ -1,0 +1,23 @@
+<h1>Listing Diario De Classe Posts</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>User</th>
+  </tr>
+  <%- @diario_de_classe_posts.each do |diario_de_classe_post|%>
+    <tr>
+      <td><%=h diario_de_classe_post.title %></td>
+      <td><%=h diario_de_classe_post.body %></td>
+      <td><%=h diario_de_classe_post.user_id %></td>
+    
+      <td><%=link_to 'Show', object_url(diario_de_classe_post) %></td>
+      <td><%=link_to 'Edit', edit_object_url(diario_de_classe_post) %></td>
+      <td><%=link_to 'Destroy', object_url(diario_de_classe_post), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<br/>
+
+<%= link_to 'New Diario De Classe Post', new_object_url %>

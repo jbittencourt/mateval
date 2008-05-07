@@ -1,0 +1,16 @@
+<h1>Editing Diario De Classe Post</h1>
+
+<%= error_messages_for :diario_de_classe_post %>
+
+<% form_for(:diario_de_classe_post, :url => object_url, :html => { :method => :put }) do |f| %>
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <p>
+    <%=submit_tag "Update"%>
+  </p>
+<% end %>
+
+<br/>
+
+<%= link_to 'Show', object_url %>
+|
+<%= link_to 'Back', collection_url %>

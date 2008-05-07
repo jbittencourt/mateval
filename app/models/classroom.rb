@@ -1,10 +1,9 @@
 class Classroom < ActiveRecord::Base
-
-	has_and_belongs_to_many :diario_de_classe_posts
-	has_and_belongs_to_many :students
-
-
-	def list_students(year=Date.today.to_s[0,4])
+  
+  belongs_to :subject
+  
+  # TODO: deprecated, maybe needs refactoring
+  def list_students(year=Date.today.to_s[0,4])
 		#pesquisar por ano e depois pedir os alunos
 
 		classroom = Classroom.find(:first, :conditions => "year='#{year}' AND name='#{self.name}'" )		
@@ -20,6 +19,5 @@ class Classroom < ActiveRecord::Base
 		#	y vc.name
 		#end
 	end
-
-	
+  
 end

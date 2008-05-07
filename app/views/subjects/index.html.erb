@@ -1,0 +1,21 @@
+<h1>Listing Subjects</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Classroom</th>
+  </tr>
+  <%- @subjects.each do |subject|%>
+    <tr>
+      <td><%=h subject.name %></td>
+      <td><%=h subject.classroom_id %></td>
+    
+      <td><%=link_to 'Show', object_url(subject) %></td>
+      <td><%=link_to 'Edit', edit_object_url(subject) %></td>
+      <td><%=link_to 'Destroy', object_url(subject), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<br/>
+
+<%= link_to 'New Subject', new_object_url %>

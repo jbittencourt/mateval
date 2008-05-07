@@ -1,7 +1,11 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   has_many :plannings
-  has_and_belongs_to_many :classrooms
+  
+  has_many :diario_de_classe_posts
+  
+  has_many :subscriptions
+  has_many :subjects, :through => :subscriptions
   
   # a trick to get the user stored in the session
   cattr_accessor :current_user

@@ -9,12 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 1) do
+ActiveRecord::Schema.define(:version => 8) do
 
   create_table "classrooms", :force => true do |t|
-    t.string "name"
-    t.string "grade"
-    t.string "year"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "classrooms_diario_de_classe_posts", :id => false, :force => true do |t|
@@ -37,9 +37,18 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer "classroom_id"
   end
 
+  create_table "comments", :force => true do |t|
+    t.integer  "commentary_id"
+    t.string   "commentary_type"
+    t.text     "comment"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "diario_de_classe_posts", :force => true do |t|
     t.string   "title"
-    t.string   "body"
+    t.text     "body"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -55,11 +64,28 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer "student_id"
   end
 
+  create_table "evaluations", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "parameter_id"
+    t.integer  "planning_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "parameters", :force => true do |t|
   end
 
+  create_table "plannings", :force => true do |t|
+    t.integer  "subject_id"
+    t.integer  "parameter_id"
+    t.integer  "classroom_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "students", :force => true do |t|
-    t.string   "name",                         :default => "", :null => false
+    t.string   "name",                         :null => false
     t.string   "picture"
     t.string   "amadis_username"
     t.string   "email"
@@ -72,8 +98,20 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime "updated_at"
   end
 
+  create_table "subjects", :force => true do |t|
+    t.string   "name"
+    t.integer  "classroom_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "name",                                    :default => "", :null => false
+    t.string   "name"
     t.string   "username"
     t.string   "email"
     t.string   "salt",                      :limit => 40
