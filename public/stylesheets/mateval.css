@@ -1,0 +1,108 @@
+		/* Estilos para o layout */
+		* { border: none; margin: 0; padding: 0; }
+		body
+		{
+			background-color: #F9E7D1;
+		}
+		.clear
+		{
+			clear: left;
+		}
+		.background 
+		{
+			margin: 0 auto;
+			background-image: url(../images/background.jpg);
+			background-repeat: repeat-x;
+		}
+		.top-wrapper
+		{
+			width: 800px; 
+			margin: 0 auto;
+		}
+		.mateval
+		{
+			float: left; 
+			width: 181px; 
+			height: 87px;
+		}
+		.top
+		{
+			float: left; 
+			width: 585px; 
+			height: 87px;
+			margin-left: 33px;
+		}
+		.separator
+		{
+			margin-top: 2px;			
+			border: solid #6CF2E9;
+		}
+		.content-wrapper
+		{
+			margin: 0 auto;
+		}
+		.left
+		{
+			float: left;
+			width: 180px; 
+			margin-top: 2px;
+		}
+		.right
+		{
+			float: left;
+			margin-left: 33px;
+		}
+
+		/* Estilos referentes à tela SEM usuário logado */
+		.inner-content
+		{
+			float: left;
+			margin-right: 10px;
+			margin-top: 2px;
+		}
+		.inner-content-last
+		{
+			float: left;
+			margin-top: 2px;
+		}
+		.signin_box 
+		{
+			margin-top: 4px;
+			background-image: url(../images/unlogged/signin_background.jpg);
+			background-repeat: repeat-x;
+			width: 502px;
+			height: 133px;
+			color: #FFFFFF;
+			padding-top: 10px;
+			padding-left: 10px;
+			font-size: small;
+		}
+		.signin
+		{
+			margin-top: 5px;
+			margin-left: 42px;
+			
+		}
+		.login
+		{
+			width: 172px;
+			height: 150px; 
+			background-color: 94672e; 
+			padding-left: 8px; 
+			margin-top: 4px; 
+			color: #FFFFFF; 
+			font-weight: bold;
+		}
+		.minor-box
+		{
+		width: 172px;
+		height: 70px; 
+		background-color: 
+		e7a044; 
+		margin-top: 8px; 
+		font-size: small; 
+		color:#89602c; 
+		padding-left:8px;
+		}
+
+		/* Estilos referentes à tela COM usuário logado */
