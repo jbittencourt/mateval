@@ -1,5 +1,8 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br">
 <head>
+<title> MatEval </title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
 <%= stylesheet_link_tag 'mateval' %> 
 
@@ -9,7 +12,7 @@
 <div class="background">
 	<div class="top-wrapper">
 		<div class="mateval">
-			<img src="images/mateval.jpg" alt="MatEval">
+			<img src="images/mateval.jpg" alt="MatEval" />
 		</div>
 		<div class="top">
 			<!-- Aqui vai a figura do banner -->
@@ -21,7 +24,7 @@
 				<!-- Aqui vai o menu da esquerda -->
 			</div>
 			<div class="right">
-				<!-- Aqui vai o conteúdo que ficará na parte da direita -->
+			 <%= yield %><!-- Aqui vai o conteúdo que ficará na parte da direita -->
 			</div>
 		</div> <!-- Fim content-wrapper -->
 		<div class="clear"></div>
