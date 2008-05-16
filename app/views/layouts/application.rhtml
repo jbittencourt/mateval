@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<%= stylesheet_link_tag 'mateval' %> 
+
+</head>
+<body>
+
+<div class="background">
+	<div class="top-wrapper">
+		<div class="mateval">
+			<img src="images/mateval.jpg" alt="MatEval">
+		</div>
+		<div class="top">
+			<%= top %>
+		</div>
+		<div class="clear"></div>
+		<div class="separator"></div> <!-- Linha azul -->
+		<div class="content-wrapper"> <!-- Parte interna, abaixo da linha azul -->
+			<div class="left">
+				<%= left_box %>
+			</div>
+			<div class="right">
+				<%= yield %> <!-- Aqui vai o conteúdo que ficará na parte da direita -->
+			</div>
+		</div> <!-- Fim content-wrapper -->
+		<div class="clear"></div>
+	</div>
+</div>
+
+</body>
+</html>
