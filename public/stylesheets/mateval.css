@@ -96,13 +96,33 @@
 		}
 		.minor-box
 		{
-		width: 172px;
-		height: 70px; 
-		background-color: #e7a044; 
-		margin-top: 8px; 
-		font-size: small; 
-		color:#89602c; 
-		padding-left:8px;
+			width: 172px;
+			height: 70px; 
+			background-color: #e7a044; 
+			margin-top: 8px; 
+			font-size: small; 
+			color:#89602c; 
+			padding-left:8px;
 		}
 
 		/* Estilos referentes à tela COM usuário logado */
+
+		.orange-box
+		{
+			margin-bottom: 0;
+			width: 181px;
+			height: 70px; 
+			background-color: #e7a044; 
+		}
+		.user-menu
+		{
+			padding: 7px;
+			margin-top: 0;
+			width: 167px;
+			height: 46px; 
+			background-color: #f9e8d4;
+			color: #466d6c;
+			font-family: "Ostorah";
+			font-size: 13px;
+			
+		}
