@@ -9,15 +9,17 @@ module ApplicationHelper
 		else
 			output = []
 			output << form_tag('/account/login')
-			output << image_tag("/images/unlogged/login.jpg") 
-			output << "
-					<div class=\"login\"><br/>
-					Professor(a):</br>
-					<input type=\"text\"><br/><br/>
-					Senha:</br>
-					<input type=\"password\">"
-					output << submit_tag("login")
-					output << "</form>"
+			#output << form_for(:account , :url=> login_account_url) do |f|
+				output << image_tag("/images/unlogged/login.jpg") 
+				output << "
+						<div class=\"login\"><br/>
+						Professor(a):</br>
+						<input type=\"text\" name=\"username\"><br/><br/>
+						Senha:</br>
+						<input type=\"password\" name=\"password\">"
+						output << submit_tag("login")
+						output << "</form>"
+			#end
 					output << "</div>
 				<div class=\"minor-box\">
 					</br>Esqueceu a senha?
