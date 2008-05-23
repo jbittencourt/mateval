@@ -4,8 +4,18 @@ module ApplicationHelper
 
 	def left_box
 		if logged_in?
-			"loged"
-		
+			output = []
+			output << image_tag("/images/logged/dummy.jpg") 
+			output <<	"<div class=\"user-menu\">"
+			output <<		"<b>Professor Logado</b> <br />"
+			output <<		"Editar Perfil<br />"
+			output <<		button_to ("Sair" , :controller => :account , :action => :logout)
+			output <<	"</div>"
+
+			output << "<div class=\"orange-box\"></div>"
+			output << image_tag("/images/logged/pcn.jpg", :style => "margin-bottom: 0px")
+			return output.join("\n ")
+
 		else
 			output = []
 			output << form_tag('/account/login')
@@ -31,11 +41,13 @@ module ApplicationHelper
 
 	def top
 		if logged_in?
-			"loged"
+			output = []
+			output << image_tag("/images/logged/my_classes.jpg") 
+			output << image_tag("/images/logged/class_diary.jpg")
+			return output.join("\n ")
+
 		else
-		 "<div class=\"banner\">
-				<img src=\"images/unlogged/top.jpg\" alt=\"Escola Luciana de Abreu\">
-			</div>"
+		 	return image_tag("/images/unlogged/top.jpg") 
 		end
 	end
 
