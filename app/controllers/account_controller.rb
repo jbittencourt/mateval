@@ -17,9 +17,15 @@ class AccountController < ApplicationController
         # a trick to get the user stored in the session
         User.current_user = self.current_user
         #-----------------------------------------------
+			
         self.current_user.remember_me
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
+
+		#geting session variab
+		session[:name] = self.current_user.name
+		session[:user_id] = self.current_user.id
+
       redirect_back_or_default(:controller => '/login', :action => 'index')
       flash[:notice] = "Logged in successfully"
     end

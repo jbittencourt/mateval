@@ -7,7 +7,8 @@ module ApplicationHelper
 			output = []
 			output << image_tag("/images/logged/dummy.jpg") 
 			output <<	"<div class=\"user-menu\">"
-			output <<		"<b>Professor Logado</b> <br />"
+			#output <<		"<b>Professor Logado</b> <br />"
+			output <<     session[:name]
 			output <<		"Editar Perfil<br />"
 			output <<		button_to ("Sair" , :controller => :account , :action => :logout)
 			output <<	"</div>"
