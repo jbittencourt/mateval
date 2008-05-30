@@ -22,13 +22,18 @@ class AccountController < ApplicationController
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
 
-		#geting session variab
+		#geting session variables
 		session[:name] = self.current_user.name
 		session[:user_id] = self.current_user.id
 
       redirect_back_or_default(:controller => '/login', :action => 'index')
       flash[:notice] = "Logged in successfully"
-    end
+    else
+		flash[:notice] = "Wrong username or password"
+		redirect_to(:controller => '/login')
+
+	 end
+
   end
 
   def signup
@@ -36,7 +41,7 @@ class AccountController < ApplicationController
     return unless request.post?
     @user.save!
     self.current_user = @user
-    redirect_back_or_default(:controller => '/account', :action => 'index')
+    redirect_back_or_default(:controller => '/login', :action => 'index')
     flash[:notice] = "Thanks for signing up!"
  	 rescue ActiveRecord::RecordInvalid
     render :action => 'signup'
@@ -47,6 +52,6 @@ class AccountController < ApplicationController
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logged out."
-    redirect_back_or_default(:controller => '/account', :action => 'index')
+    redirect_back_or_default(:controller => '/login', :action => 'index')
   end
 end
