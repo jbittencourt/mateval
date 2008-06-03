@@ -4,24 +4,23 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
 <%= stylesheet_link_tag 'mateval' %> 
-
+<title>- MatEVal - </title>
 </head>
 <body>
 
 <div class="background">
 	<div class="top-wrapper">
 		<div class="mateval">
-			<img src="images/mateval.jpg" alt="MatEval">
+			<%=image_tag("mateval.jpg", :alt=>'MatEval')%>
 		</div>
 		<div class="top">
-			<%= top %>
+			<%= header_menu %>
 		</div>
 		<div class="clear"></div>
 		<div class="separator"></div> <!-- Linha azul -->
-		<%= flash[:notice] %>
 		<div class="content-wrapper"> <!-- Parte interna, abaixo da linha azul -->
 			<div class="left">
-				<%= left_box %>
+				<%= side_bar_left %>
 			</div>
 			<div class="right">
 				<%= yield %> <!-- Aqui vai o conteúdo que ficará na parte da direita -->
