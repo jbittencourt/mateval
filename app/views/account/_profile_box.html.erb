@@ -1,0 +1,9 @@
+<%=image_tag("logged/dummy.jpg")%> 
+<div class="user-menu">
+    <b>Professor Logado</b><br />
+    <%=current_user.name%><br />
+	Editar Perfil<br />
+    <%=button_to ('Sair' , :controller => 'account' , :action => 'logout')%>
+</div>
+<div class="orange-box"></div>
+<%=image_tag("logged/pcn.jpg", :style => "margin-bottom: 0px")%>
