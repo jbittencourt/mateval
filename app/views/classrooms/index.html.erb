@@ -1,19 +1,24 @@
-<h1>Listing Classrooms</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-  <%- @classrooms.each do |classroom|%>
-    <tr>
+<div style = "width: 517px; height:223px; background-image: url(../images/logged/inner_background.jpg);">
+Turmas
+<table style = "margin-top: 10px; margin-left:10px; width: 480px;">
+	<%- color = "#fcf3ea"  
+    @classrooms.each do |classroom|
+	
+     if color == "#fcf3ea"
+			color = "#fce3c5"
+			target = "target_1.jpg" 
+		else
+			color = "#fcf3ea"
+			target = "target_2.jpg"
+		end %> 
+    <tr style = "background-color: <%=color%> ; width: 1px;">
+		
       <td><%=h classroom.name %></td>
-    
-      <td><%=link_to 'Show', object_url(classroom) %></td>
-      <td><%=link_to 'Edit', edit_object_url(classroom) %></td>
-      <td><%=link_to 'Destroy', object_url(classroom), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td> ver alunos</td>
+      <td> <%= image_tag("/images/logged/"+target) %>objetivos</td>
     </tr>
   <% end %>
 </table>
 <br/>
+</div>
 
-<%= link_to 'New Classroom', new_object_url %>
