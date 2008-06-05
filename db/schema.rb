@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 9) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "year"
   end
 
   create_table "classrooms_diario_de_classe_posts", :id => false, :force => true do |t|
@@ -111,14 +112,18 @@ ActiveRecord::Schema.define(:version => 9) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "login"
+    t.string   "name"
+    t.string   "username"
     t.string   "email"
-    t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "crypted_password",          :limit => 40
+    t.string   "school"
+    t.string   "city"
+    t.string   "state",                     :limit => 3
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
