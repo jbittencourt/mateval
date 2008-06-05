@@ -1,6 +1,9 @@
 <div style = "width: 517px; height:223px; background-image: url(../images/logged/inner_background.jpg); padding-top:10px;">
 		<div style="font-size:large; float:left; width:320px;" >Turmas</div>
-		<div style="float:left">Ano letivo:</div>
+		<div style="float:left">
+			Ano letivo: 
+<%= select("classroom","year",@distinct_years)   %>
+		</div>
 		
 		<table style = "margin-top: 10px; margin-left:10px; width: 480px;">
 			<%- color = "#fcf3ea"  
