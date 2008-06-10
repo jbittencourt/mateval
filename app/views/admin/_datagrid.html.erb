@@ -1,0 +1,69 @@
+<div id="dashboard">
+    <div class="dash-head">
+    	<!-- Title of datagrid -->
+        <h1><%=@datagrid[:title]%></h1>
+		<!-- Action area -->
+		<div class="action-area">
+			<%@datagrid[:action_buttons].each do |button|%>
+				<%=link_to_remote("Novo", :update => "add_content", :url => { :action => "new"},
+                    :complete => "Application.showAddArea();") if button == 'add'
+				%>
+				<%=eval(button) unless button == 'add'%>
+			<% end %>
+		</div>
+    </div>
+    <div class="dashboard-content">
+        <table class="datagrid" cellspacing="0" cellpadding="0">
+        	<thead>
+        		<tr>
+        			<td colspan="<%=@datagrid[:fields].length+4%>">
+        				<div id="add_content"></div>
+        			</td>
+        		</tr>
+        	</thead>
+            <tfoot><tr><td colspan="<%=@datagrid[:fields].length+4%>">&nbsp;</td></tr></tfoot>
+            <tbody>
+                <tr>
+                    <th class="first">Id</th>
+                    <% @datagrid[:header].each do |item|%>
+                        <th><%=item%></th>
+                    <% end %>
+                    <th>Cadastrado em</th>
+                    <th>Atualizado em</th>
+                    <th>Ações</th>
+                </tr>
+                <% count = 0 %>
+                <% @datagrid[:list].each do |item|%>
+                <tr class="row<%=(count % 2 == 0) ? 1 : 2%>" id="item_<%=item.id%>">
+                    <td class="first"><%=item.id%></td>
+                    <% @datagrid[:fields].each do |field|%>
+                        <td><%=item[field]%></td>
+                    <% end %>
+                    <td><%=item.created_at.strftime("%d/%m/%Y")%></td>
+                    <td><%=item.updated_at.strftime("%d/%m/%Y")%></td>
+                    <td>
+                        <%@datagrid[:actions].each do |action|%>
+                            <%=link_to_remote("Ver", :update => "item_content_"+item.id.to_s, 
+                                :url => { :action => "show", :id => item.id },
+                                :complete => "Application.showEntry(request, '"+item.id.to_s+"')") if action == 'view'
+                            %>
+							<%=link_to_remote("Editar", :update => "item_content_"+item.id.to_s, 
+                                :url => { :action => "edit", :id => item.id }, :method => :get,
+                                :complete => "Application.showEntry('"+item.id.to_s+"')") if action == 'edit'
+                            %>
+                            <%=link_to("Deletar", { :action => "delete", :id => item.id }, :confirm => "Você tem certeza?") if action == 'delete' %>
+                        <% end %>
+                    </td>
+                </tr>
+                <tr id="item_content_row_<%=item.id%>" style="display:none;">
+                    <td colspan="<%=@datagrid[:fields].length+4%>" class="view-item">
+                        <div id="item_content_<%=item.id%>"></div>
+                    </td>
+                </tr>
+                <% count += 1 %>
+                <% end %>
+            </tbody>
+        </table>                        
+        <div class="dashfooter">&nbsp;</div>
+    </div>
+</div>
