@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 9) do
+ActiveRecord::Schema.define(:version => 10) do
 
   create_table "classrooms", :force => true do |t|
     t.string   "name"
@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(:version => 9) do
   create_table "parameters", :force => true do |t|
   end
 
+  create_table "permissions", :force => true do |t|
+    t.string "name", :limit => 40, :default => "", :null => false
+    t.string "info", :limit => 80
+  end
+
+  create_table "permissions_roles", :id => false, :force => true do |t|
+    t.integer "role_id",       :null => false
+    t.integer "permission_id", :null => false
+  end
+
   create_table "plannings", :force => true do |t|
     t.integer  "subject_id"
     t.integer  "parameter_id"
@@ -85,8 +95,18 @@ ActiveRecord::Schema.define(:version => 9) do
     t.datetime "updated_at"
   end
 
+  create_table "roles", :force => true do |t|
+    t.string "title", :limit => 40, :default => "", :null => false
+    t.string "info",  :limit => 80
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "user_id", :null => false
+    t.integer "role_id", :null => false
+  end
+
   create_table "students", :force => true do |t|
-    t.string   "name",                         :null => false
+    t.string   "name",                         :default => "", :null => false
     t.string   "picture"
     t.string   "amadis_username"
     t.string   "email"
