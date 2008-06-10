@@ -8,28 +8,27 @@ module ApplicationHelper
   #   * app/views/account/_login_box
   #   * app/view/account/_profile_box
   #
-  # TASK: in the future make this work with administrator and
-  # teacher differentiation
-  #
 	def side_bar_left
 		if logged_in?
-      return render :partial => 'account/profile_box'  
+      return render(:partial => 'account/profile_box')  
     else
-      return render :partial => 'account/login_box'  
+      return render(:partial => 'account/login_box')
 		end
 	end
 
   # Render the main menu, located in the top of site
   #
-  # TASK: in the future make this work with administrator and
-  # teacher differentiation
   #
 	def header_menu
 		if logged_in?
 			output = []
-			output << image_tag("/images/logged/my_classes.jpg") 
-			output << image_tag("/images/logged/class_diary.jpg")
-			return output.join("\n ")
+			output << link_to(image_tag("/images/logged/my_classes.png"), {:controller => 'classrooms'}) 
+			output << image_tag("/images/logged/class_diary.png")
+      
+      if is_admin?
+        output << link_to(image_tag("/images/logged/class_diary.jpg"), {:controller => 'admin'})
+      end			
+      return output.join("\n")
 
 		else
 		 	return image_tag("/images/unlogged/top.jpg") 
