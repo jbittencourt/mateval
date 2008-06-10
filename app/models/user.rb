@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :subjects, :through => :subscriptions
   
+  has_and_belongs_to_many :roles
+  
   # a trick to get the user stored in the session
   cattr_accessor :current_user
   
@@ -69,7 +71,7 @@ class User < ActiveRecord::Base
 
 	def list_classrooms(year = Date.today.to_s[0,4])
 		
-		all_classrooms = self.classrooms.find(:all, :conditions => "year = '#{year}'")
+		self.classrooms.find(:all, :conditions => "year = '#{year}'")
 
 	end
 	
