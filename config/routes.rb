@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
-  map.resources :classrooms
-  
+  map.resources :classrooms, :collection => {:manager => :get, :create => :post}
+   
   map.resources :subjects
   
   map.resources :comments
@@ -15,12 +15,12 @@ ActionController::Routing::Routes.draw do |map|
   # This rules are responsible for make connection with account actions 
   # for login, signup and logout
   #
-  map.resources :account
+  map.resources :account, :collection => {:list => :get}
   
   map.login 'login', :controller => 'account', :action => 'login'
   map.logout 'logout', :controller => 'account', :action => 'logout'
   map.signup 'signup', :controller => 'account', :action => 'signup'
-  
+  map.admin 'admin', :controller => 'admin'  
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
