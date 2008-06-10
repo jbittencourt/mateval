@@ -1,11 +1,11 @@
 <!--#output << form_for(:account , :url=> login_account_url) do |f|-->
 <%=image_tag("unlogged/login.jpg")%>
 <%=form_tag('/account/login')%> 
-    <div class="login"><br/>
+    <div class="login">
         Professor(a):</br>
-        <input type="text" name="username"><br/><br/>
+        <input type="text" class="login-input" name="username"><br/>
         Senha:</br>
-        <input type="password" name="password">
+        <input type="password" class="login-input" name="password">
         <%=submit_tag("login")%>
     </div>
 </form>
