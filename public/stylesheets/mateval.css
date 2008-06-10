@@ -1,128 +1,174 @@
-		/* Estilos para o layout */
-		* { border: none; margin: 0; padding: 0; }
+/* Estilos para o layout */
+* {
+    border: none;
+    margin: 0;
+    padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
 
-		body
-		{
-			background-color: #F9E7D1;
-		}
-		.clear
-		{
-			clear: left;
-		}
-		.background 
-		{
-			margin: 0 auto;
-			background-image: url(../images/background.jpg);
-			background-repeat: repeat-x;
-		}
-		.top-wrapper
-		{
-			width: 800px; 
-			margin: 0 auto;
-		}
-		.mateval
-		{
-			float: left; 
-			width: 181px; 
-			height: 87px;
-		}
-		.top
-		{
-			float: left; 
-			width: 585px; 
-			height: 87px;
-			margin-left: 33px;
-		}
-		.separator
-		{
-			margin-top: 2px;			
-			border: solid #6CF2E9;
-		}
-		.content-wrapper
-		{
-			margin: 0 auto;
-		}
-		.left
-		{
-			float: left;
-			width: 180px; 
-			margin-top: 2px;
-		}
-		.right
-		{
-			float: left;
-			margin-left: 33px;
-		}
+body {
+    background-color: #F9E7D1;
+}
 
-		/* Estilos referentes à tela SEM usuário logado */
-		.inner-content
-		{
-			float: left;
-			margin-right: 10px;
-			margin-top: 2px;
-		}
-		.inner-content-last
-		{
-			float: left;
-			margin-top: 2px;
-		}
-		.signin_box 
-		{
-			margin-top: 4px;
-			background-image: url(../images/unlogged/signin_background.jpg);
-			background-repeat: repeat-x;
-			width: 502px;
-			height: 133px;
-			color: #FFFFFF;
-			padding-top: 10px;
-			padding-left: 10px;
-			font-size: small;
-		}
-		.signin
-		{
-			margin-top: 5px;
-			margin-left: 42px;
-			
-		}
-		.login
-		{
-			width: 172px;
-			height: 150px; 
-			background-color: #94672e; 
-			padding-left: 8px; 
-			margin-top: 4px; 
-			color: #FFFFFF; 
-			font-weight: bold;
-		}
-		.minor-box
-		{
-			width: 172px;
-			height: 70px; 
-			background-color: #e7a044; 
-			margin-top: 8px; 
-			font-size: small; 
-			color:#89602c; 
-			padding-left:8px;
-		}
+.clear {
+    clear: left;
+}
 
-		/* Estilos referentes à tela COM usuário logado */
+.background {
+    margin: 0 auto;
+    background-image: url(/images/background.jpg);
+    background-repeat: repeat-x;
+}
 
-		.orange-box
-		{
-			margin-bottom: 0;
-			width: 181px;
-			height: 70px; 
-			background-color: #e7a044; 
-		}
-		.user-menu
-		{
-			padding: 7px;
-			margin-top: 0;
-			width: 167px;
-			height: 46px; 
-			background-color: #f9e8d4;
-			color: #466d6c;
-			font-family: "Ostorah";
-			font-size: 13px;
-			
-		}
+.top-wrapper {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.mateval {
+    float: left;
+    width: 181px;
+    height: 87px;
+}
+
+.top {
+    float: left;
+    width: 585px;
+    height: 87px;
+    margin-left: 33px;
+}
+
+.separator {
+    margin-top: 2px;
+    border: solid #6CF2E9;
+}
+
+.content-wrapper {
+    margin: 0 auto;
+}
+
+.sidebar-left {
+    float: left;
+    width: 180px;
+    margin-top: 2px;
+}
+
+.right {
+    float: left;
+	width: 580px;
+    margin-left: 33px;
+}
+/* Estilos referentes à tela SEM usuário logado */
+.inner-content {
+    float: left;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+
+.inner-content-last {
+    float: left;
+    margin-top: 2px;
+}
+
+.signin_box {
+    margin-top: 4px;
+    background-image: url(/images/unlogged/signin_background.jpg);
+    background-repeat: repeat-x;
+    width: 502px;
+    height: 133px;
+    color: #FFFFFF;
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: small;
+}
+
+.signin {
+    margin-top: 5px;
+    margin-left: 42px;
+}
+
+.login {
+    width: 172px;
+    background-color: #94672e;
+    padding: 5px 0px 8px 8px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+	.login .login-input {
+		width: 160px;
+	}
+
+.minor-box {
+    width: 172px;
+    height: 70px;
+    background-color: #e7a044;
+    margin-top: 8px;
+    font-size: small;
+    color: #89602c;
+    padding-left: 8px;
+}
+/* Estilos referentes à tela COM usuário logado */
+.orange-box {
+    margin-bottom: 0;
+    width: 181px;
+    height: 70px;
+    background-color: #e7a044;
+}
+
+.user-menu {
+    /*padding: 7px;*/
+    margin-top: 0;
+    
+    background-color: #f9e8d4;
+    color: #466d6c;
+    font-family: "Ostorah";
+    font-size: 13px;
+}
+
+/*DATAGRID STYLES*/
+#dashboard {
+	background: #f8e8d4 url(/images/logged/inner_background.jpg) repeat-x top left;
+}
+	.dash-head h1 { 
+		color: #754c24;
+		font-size: 16px;
+		padding: 10px; 
+	}
+	
+	.datagrid {
+    	width: 100%;
+		color: #754c24;
+	}
+            
+	.datagrid tfoot { 
+	    height: 19px;
+	}
+	
+	.datagrid th, .row2 {
+	    background: #fce3c5;
+	}
+	
+	/*.datagrid th, .row1 td, .row2 td { border-left: solid 1px #c2ecfb; }*/
+	.datagrid th.first, .row1 td.first, .row2 td.first { border: none; }
+	
+	.datagrid td, .datagrid th { 
+		text-align: center;
+		padding: 3px; 
+	}
+	
+	.datagrid tr.row1 {
+	    background: #fcf4ea;
+	}
+	
+	.datagrid td.view-item, .datagrid thead td {
+	    text-align: left;
+	    padding: 15px;
+	}
+	
+	.dash-head .action-area {
+		float: right;
+		margin-top: -25px;
+		margin-right: 10px;
+	}
