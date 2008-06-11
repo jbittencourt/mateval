@@ -1,5 +1,5 @@
 class AddYearToClassroom < ActiveRecord::Migration
-  def self.up
+  def self.up   
     add_column :classrooms, :year, :integer
   end
 

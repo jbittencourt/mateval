@@ -5,7 +5,7 @@ class CreateAclSchema < ActiveRecord::Migration
       t.column :info, :string, :limit=>80
     end
     create_table :permissions do |t|
-      t.column :name, :string, :limit=>40, :null=>false
+      t.column :name, :string, :limit=>40, :null=>false  
       t.column :info, :string, :limit=>80
     end
     create_table :roles_users, :id => false do |t|
