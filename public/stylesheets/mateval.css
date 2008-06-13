@@ -99,6 +99,13 @@ body {
 	.login .login-input {
 		width: 160px;
 	}
+	
+.button-to input {
+	border: solid 2px #f4d0a2;
+	width: 70px;
+	color: #f15a24;
+	font-weight: bold;
+}
 
 .minor-box {
     width: 172px;
@@ -172,3 +179,48 @@ body {
 		margin-top: -25px;
 		margin-right: 10px;
 	}
+
+/* FORM STYLE */
+input, textarea { 
+	border: solid 1px #d3bba3;
+	width: 400px; 
+}
+
+#dashboard h1, #dashboard h2 {
+	font-size: 180%; 
+	color: #754c24;
+	padding-bottom: 5px; 
+}
+
+#dashboard .section-title { padding: 15px; }
+
+#dashboard h2 { font-size: 130%; }
+
+#dashboard .form-box { padding: 15px; }
+#dashboard label {
+	color: #754c24;
+	font-size: 120%;
+	font-weight: bold; 
+	display: block;
+	margin-top: 10px; 
+}
+
+#dashboard .post {
+	padding: 15px;
+}
+
+#dashboard .submit-area { 
+	text-align: right; 
+	width: 400px;  
+}
+
+#dashboard .submit-button { cursor: pointer;}
+
+a.create { 
+	text-align: right;
+	color: #754c24;
+	font-weight: bold;
+}
+
+input[type=radio] { width: 14px; }
+label.radio-label { display: inline; }
