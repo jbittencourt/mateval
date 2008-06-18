@@ -1,30 +1,12 @@
+<h1>New User</h1>
+
 <%= error_messages_for :user %>
+
 <% form_for :user do |f| -%>
+		<%= render :partial => "form", :locals => { :f => f } %>
 
-<p><label for="name">Nome Completo</label><br/>
-<%= f.text_field :name %></p>
+<p>
+	<%= submit_tag "Sign up" %>
+</p>
 
-<p><label for="username">Nome de Usuário</label><br/>
-<%= f.text_field :username %></p>
-
-<p><label for="password">Senha</label><br/>
-<%= f.password_field :password %></p>
-
-<p><label for="password_confirmation">Confirm Password</label><br/>
-<%= f.password_field :password_confirmation %></p>
-
-<p><label for="email">E-mail</label><br/>
-<%= f.text_field :email %></p>
-
-<p><label for="school">Escola</label><br/>
-<%= f.text_field :school %></p>
-
-<p><label for="city">Cidade</label><br/>
-<%= f.text_field :city %></p>
-
-<p><label for="state">Estado</label><br/>
-<%= f.text_field :state %></p>
-
-
-<p><%= submit_tag 'Sign up' %></p>
-<% end -%>
+<% end %>

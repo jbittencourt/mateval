@@ -6,9 +6,15 @@
 		<div class="action-area">
 			<%@datagrid[:action_buttons].each do |button|%>
 				<%=link_to_remote("Novo", :update => "add_content", :url => { :action => "new"},
-                    :complete => "Application.showAddArea();") if button == 'add'
-				%>
-				<%=eval(button) unless button == 'add'%>
+                    :complete => "Application.showAddArea();") if button == 'add'%>
+
+				<%=link_to_remote("Novo Objetivo", :update => "add_content", :url => { :controller => "objectives", :action => "new", :id => params[:id]},
+                    :complete => "Application.showAddArea();") if button == 'add_obj'%>
+
+					<%=link_to_remote("Novo", :update => "add_content", :url => { :action => "signup"},
+						  :complete => "Application.showAddArea();") if button == 'add_user'%>
+				
+				<%=eval(button) unless (button == 'add_user') or (button == 'add') or (button == 'add_obj') %>
 			<% end %>
 		</div>
     </div>
@@ -34,24 +40,34 @@
                 </tr>
                 <% count = 0 %>
                 <% @datagrid[:list].each do |item|%>
-                <tr class="row<%=(count % 2 == 0) ? 1 : 2%>" id="item_<%=item.id%>">
+                <%="<tr class='row"+((count % 2 == 0) ? 1 : 2).to_s+"' id='item_"+item.id.to_s+"'>"%>
                     <td class="first"><%=item.id%></td>
                     <% @datagrid[:fields].each do |field|%>
                         <td><%=item[field]%></td>
                     <% end %>
                     <td><%=item.created_at.strftime("%d/%m/%Y")%></td>
                     <td><%=item.updated_at.strftime("%d/%m/%Y")%></td>
-                    <td>
+                    <%= if @datagrid[:actions].include?('objectives'): 
+                            "<td>"
+                         else
+                             "<td class='row_objectives'>" 
+                         end
+                    %>
                         <%@datagrid[:actions].each do |action|%>
                             <%=link_to_remote("Ver", :update => "item_content_"+item.id.to_s, 
                                 :url => { :action => "show", :id => item.id },
                                 :complete => "Application.showEntry(request, '"+item.id.to_s+"')") if action == 'view'
                             %>
-							<%=link_to_remote("Editar", :update => "item_content_"+item.id.to_s, 
+							      <%=link_to_remote("Editar", :update => "item_content_"+item.id.to_s, 
                                 :url => { :action => "edit", :id => item.id }, :method => :get,
                                 :complete => "Application.showEntry('"+item.id.to_s+"')") if action == 'edit'
                             %>
-                            <%=link_to("Deletar", { :action => "delete", :id => item.id }, :confirm => "Você tem certeza?") if action == 'delete' %>
+                            <%=link_to("Deletar", { :action => "delete", :id => item.id }, :confirm => "Você tem certeza?") if      action == 'delete' %>
+                           <%= if action == 'objectives':
+                                link_to_remote( image_tag("logged/target_"+(count%2).to_s+".jpg" , :class => "signin", :alt => "Objetivos") +
+                                 "objetivos" , :update=>"dashboard" , :url =>{:action => "objectives" , :id => item.id})
+                               end %>
+									
                         <% end %>
                     </td>
                 </tr>

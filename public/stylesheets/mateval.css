@@ -169,6 +169,9 @@ body {
 	    background: #fcf4ea;
 	}
 	
+	.datagrid tr.row_objectivess {
+	    background: #fcf4ea;
+	}
 	.datagrid td.view-item, .datagrid thead td {
 	    text-align: left;
 	    padding: 15px;

@@ -1,6 +1,6 @@
 class ClassroomsController < ResourceController::Base
   before_filter :login_required
-  access_control [:create, :new, :edit] => '(admin)'	
+  access_control [:create, :new, :edit ,:manager] => '(admin)'	
   
   def index
     #get all the classrooms relationated whit the user
@@ -25,11 +25,26 @@ class ClassroomsController < ResourceController::Base
     #			end
   end
   
+  def objectives
+	
+    classroom = Classroom.find(params[:id])
+	 objectives = classroom.objectives
+    @datagrid = { 
+      :title => 'Objetivos para turma ' + classroom.name, 
+      :list => objectives,
+      :header => %w(Criador Nome Turma Data),
+      :fields => %w(name name turma limit ),
+      :actions => %w(objectives),
+      :action_buttons => ['add_obj']
+    }
+	  render :layout => false
+  end
+
   def manager
     @distinct_years = Classroom.find(:all).map{ |i| i.year }.uniq
     @datagrid = { 
       :title => 'Administração de Turmas', 
-      :list => Classroom.find(:all, :conditions => "year='"+Date.today.to_s[0,4]+"'"),
+      :list => Classroom.find(:all),
       :header => %w(Nome Ano),
       :fields => %w(name year),
       :actions => %w(edit delete),

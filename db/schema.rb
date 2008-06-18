@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 10) do
+ActiveRecord::Schema.define(:version => 11) do
 
   create_table "classrooms", :force => true do |t|
     t.string   "name"
@@ -39,10 +39,9 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "comments", :force => true do |t|
-    t.integer  "commentary_id"
-    t.string   "commentary_type"
-    t.text     "comment"
-    t.integer  "user_id"
+    t.string   "name"
+    t.string   "objective"
+    t.datetime "limit"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -73,11 +72,21 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
+  create_table "objectives", :force => true do |t|
+    t.string   "name"
+    t.string   "objective"
+    t.datetime "limit"
+    t.integer  "user_id"
+    t.integer  "classroom_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "parameters", :force => true do |t|
   end
 
   create_table "permissions", :force => true do |t|
-    t.string "name", :limit => 40, :default => "", :null => false
+    t.string "name", :limit => 40, :null => false
     t.string "info", :limit => 80
   end
 
@@ -96,7 +105,7 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "roles", :force => true do |t|
-    t.string "title", :limit => 40, :default => "", :null => false
+    t.string "title", :limit => 40
     t.string "info",  :limit => 80
   end
 
@@ -106,7 +115,7 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "students", :force => true do |t|
-    t.string   "name",                         :default => "", :null => false
+    t.string   "name",                         :null => false
     t.string   "picture"
     t.string   "amadis_username"
     t.string   "email"

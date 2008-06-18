@@ -2,6 +2,7 @@ class Classroom < ActiveRecord::Base
   
   belongs_to :subject
   has_and_belongs_to_many :users
+  has_many :objectives 
 
   # TODO: deprecated, maybe needs refactoring
   def list_students(year=Date.today.to_s[0,4])

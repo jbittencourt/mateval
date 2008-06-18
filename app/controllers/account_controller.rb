@@ -1,4 +1,4 @@
-class AccountController < ApplicationController
+class AccountController < ResourceController::Base
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   # If you want "remember me" functionality, add this before_filter to Application Controller
@@ -19,7 +19,7 @@ class AccountController < ApplicationController
       :header => %w(Nome Login Email),
       :fields => %w(name username email),
       :actions => %w(view edit delete),
-      :action_buttons => ['add']
+      :action_buttons => ['add_user']
     }
   end
   def login
@@ -45,14 +45,23 @@ class AccountController < ApplicationController
   end
   
   def signup
+	 
     @user = User.new(params[:user])
-    return unless request.post?
+  return unless request.post?
+	
+	#---
+		r = Role.new
+		r.title = "prof"
+		@user.roles << r
+	#---
     @user.save!
     self.current_user = @user
-    redirect_back_or_default(:controller => '/account', :action => 'index')
     flash[:notice] = "Thanks for signing up!"
+    #redirect_back_or_default(:controller => '/account', :action => 'index')
+
   rescue ActiveRecord::RecordInvalid
-    render :action => 'signup'
+  #  render :action => 'signup'
+	render :layout => false
   end
   
   def logout
