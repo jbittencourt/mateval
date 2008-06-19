@@ -15,8 +15,9 @@ development:
   adapter: mysql
   database: mateval_development
   username: root
-  password:
+  password: dificil
   host: localhost
+  socket: /var/run/mysqld/mysqld.sock 
 
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
@@ -25,13 +26,14 @@ test:
   adapter: mysql
   database: mateval_test
   username: root
-  password:
+  password: dificil
   host: localhost
+  socket: /var/run/mysqld/mysqld.sock 
 
 production:
   adapter: mysql
   database: mateval_production
   username: root
-  password: 
+  password: dificil
   host: localhost
-
+  socket: /var/run/mysqld/mysqld.sock 
