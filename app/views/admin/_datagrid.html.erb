@@ -43,6 +43,7 @@
                 <%="<tr class='row"+((count % 2 == 0) ? 1 : 2).to_s+"' id='item_"+item.id.to_s+"'>"%>
                     <td class="first"><%=item.id%></td>
                     <% @datagrid[:fields].each do |field|%>
+
                         <td><%=item[field]%></td>
                     <% end %>
                     <td><%=item.created_at.strftime("%d/%m/%Y")%></td>
@@ -63,9 +64,19 @@
                                 :complete => "Application.showEntry('"+item.id.to_s+"')") if action == 'edit'
                             %>
                             <%=link_to("Deletar", { :action => "delete", :id => item.id }, :confirm => "Você tem certeza?") if      action == 'delete' %>
+
+									<% #### Objectives  #### %>
+									<%=link_to("Deletar", { :controller => "objectives", :action => "delete", :id => item.id, :classroom_id => params[:id] }, :confirm => "Você tem certeza?") if      action == 'delete_obj' %>
+
+							      <%=link_to_remote("Editar ", :update => "item_content_"+item.id.to_s, 
+                                :url => { :controller => "objectives", :action => "edit", :id => item.id, :classroom_id => params[:id] }, :method => :get, :complete => "Application.showEntry('"+item.id.to_s+"')") if action == 'edit_obj'
+                            %>
+					
                            <%= if action == 'objectives':
-                                link_to_remote( image_tag("logged/target_"+(count%2).to_s+".jpg" , :class => "signin", :alt => "Objetivos") +
-                                 "objetivos" , :update=>"dashboard" , :url =>{:action => "objectives" , :id => item.id})
+                               # link_to_remote( image_tag("logged/target_"+(count%2).to_s+".jpg" , :class => "signin", :alt => "Objetivos") +
+                              #   "objetivos" , :update=>"dashboard" , :url =>{:action => "objectives" , :id => item.id } )
+                                link_to ( image_tag("logged/target_"+(count%2).to_s+".jpg" , :class => "signin", :alt => "Objetivos") +
+                                 "objetivos" , :action => "objectives" , :id => item.id )
                                end %>
 									
                         <% end %>

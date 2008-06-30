@@ -8,6 +8,8 @@ ActionController::Routing::Routes.draw do |map|
    
   map.resources :register
   
+  map.resources :objectives
+  
   map.resources :diario_de_classe_posts, :has_many => :comments
   
   # Account mapping

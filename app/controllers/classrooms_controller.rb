@@ -33,11 +33,11 @@ class ClassroomsController < ResourceController::Base
       :title => 'Objetivos para turma ' + classroom.name, 
       :list => objectives,
       :header => %w(Criador Nome Turma Data),
-      :fields => %w(name name turma limit ),
-      :actions => %w(objectives),
+      :fields => %w(name name turma date-limit),
+      :actions => %w(edit_obj delete_obj),
       :action_buttons => ['add_obj']
     }
-	  render :layout => false
+	 # render :layout => false
   end
 
   def manager

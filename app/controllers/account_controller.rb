@@ -22,6 +22,7 @@ class AccountController < ResourceController::Base
       :action_buttons => ['add_user']
     }
   end
+  
   def login
     return unless request.post?
     self.current_user = User.authenticate(params[:username], params[:password])
@@ -45,21 +46,16 @@ class AccountController < ResourceController::Base
   end
   
   def signup
-	 
     @user = User.new(params[:user])
-  return unless request.post?
-	
+	 return unless request.post?
 	#---
 		r = Role.new
 		r.title = "prof"
 		@user.roles << r
 	#---
-    @user.save!
-    self.current_user = @user
-    flash[:notice] = "Thanks for signing up!"
-    #redirect_back_or_default(:controller => '/account', :action => 'index')
-
-  rescue ActiveRecord::RecordInvalid
+	@user.save!
+	redirect_back_or_default(:controller => '/account', :action => 'list')
+	rescue ActiveRecord::RecordInvalid
   #  render :action => 'signup'
 	render :layout => false
   end
@@ -70,5 +66,29 @@ class AccountController < ResourceController::Base
     reset_session
     flash[:notice] = "You have been logged out."
     redirect_back_or_default(:controller => '/account', :action => 'index')
+  end
+  
+  def delete
+  		user = User.find(params[:id])
+  		user.destroy
+  		redirect_back_or_default(:controller => '/account', :action => 'list')	
+  end
+  
+  def edit
+    @usr = User.find(params[:id])
+    render :layout => false
+  end
+  
+  def update
+    user = Classroom.find(params[:id])
+    user.name = params[:user][:name]
+    user.year = params[:user][:username]
+    user.password = params[:user][:password]
+    user.email = params[:user][:email]
+    user.school = params[:user][:school]
+    user.city = params[:user][:city]
+    user.state = params[:user][:state]
+    user.save
+    redirect_to :controller => 'account', :action => 'list'
   end
 end
