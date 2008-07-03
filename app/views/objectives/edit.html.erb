@@ -1,0 +1,14 @@
+<h1>Editando Objetivo </h1>
+
+<% form_for(:objective, :url => { :controller => "objectives", :action => "update_obj", :id=> params[:id],  }) do |f| %>
+
+ 	<p><label for="name">Nome</label><br/>
+	<%= f.text_field :name %></p>
+
+	<p><label for="objective">Objetivo</label><br/>
+	<%= f.text_field :objective %></p>
+		<%= hidden_field_tag(:classroom_id, params[:classroom_id])  %></p>
+	<p>
+		<%=submit_tag "Update"%>
+	</p>
+<% end %>
