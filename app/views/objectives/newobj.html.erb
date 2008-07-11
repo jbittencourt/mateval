@@ -1,0 +1,16 @@
+<h1>Novo Objetivo</h1>
+
+<% form_for(:objective, :url => { :controller=>"objectives", :action => "create" }) do |f| %>
+
+	<p><label for="name">Nome</label><br/>
+	<%= f.text_field :name %></p>
+
+	<p><label for="objective">Objetivo</label><br/>
+	<%= f.text_field :objective %></p>
+	<%= hidden_field_tag(:id, params[:id])  %></p>
+	<p>
+		<%= submit_tag "Criar" %>
+	</p>
+
+<% end %>
+

@@ -3,9 +3,10 @@ class ClassroomsController < ResourceController::Base
   access_control [:create, :new, :edit ,:manager] => '(admin)'	
   
   def index
-    #get all the classrooms relationated whit the user
-    classrooms = current_user.classrooms.find(:all)
-    
+  
+     #get all the classrooms fom the user
+  		classrooms = current_user.classrooms.find(:all)
+     
     #get distinct years from his classrooms
     @distinct_years = current_user.classrooms.find(:all).map{ |i| i.year }.uniq
     
@@ -15,8 +16,25 @@ class ClassroomsController < ResourceController::Base
       :header => %w(Nome),
       :fields => %w(name),
       :actions => %w(objectives),
-      :action_buttons => ['select_year(@distinct_years)']
+      :action_buttons => ['select_year(@distinct_years,nil)']
     }
+ 
+  
+  
+    #get all the classrooms relationated whit the user
+#    classrooms = current_user.classrooms.find(:all)
+    
+    #get distinct years from his classrooms
+#    @distinct_years = current_user.classrooms.find(:all).map{ |i| i.year }.uniq
+    
+#    @datagrid = { 
+#      :title => 'Turmas', 
+#      :list => classrooms,
+#      :header => %w(Nome),
+#      :fields => %w(name),
+#      :actions => %w(objectives),
+#      :action_buttons => ['select_year(@distinct_years,nil)']
+#    }
     #		@distinct_years = []
     #			@classrooms.each do |c|
     #				if !@distinct_years.include?(c.year) 
@@ -48,8 +66,12 @@ class ClassroomsController < ResourceController::Base
       :header => %w(Nome Ano),
       :fields => %w(name year),
       :actions => %w(edit delete),
-      :action_buttons => ['select_year(@distinct_years)', 'add']
+      :action_buttons => ['select_year(@distinct_years,nil)', 'add']
     }
+    
+   def update_classrooms
+   	render :text=>"YAARRR!"
+   end
     
   end
   
@@ -95,4 +117,30 @@ class ClassroomsController < ResourceController::Base
   def new
     render :layout => false
   end
+  
+  def update_objectives
+  
+     #get all the classrooms fom the select year, or all of it
+     if params[:year] == ""
+     		classrooms = current_user.classrooms.find(:all)
+     		params[:year] = "nil"
+     else
+    		classrooms = current_user.classrooms.find(:all, :conditions=> "year=#{params[:year]}" )
+     end
+     
+     
+    #get distinct years from his classrooms
+    @distinct_years = current_user.classrooms.find(:all).map{ |i| i.year }.uniq
+    
+    @datagrid = { 
+      :title => 'Turmas', 
+      :list => classrooms,
+      :header => %w(Nome),
+      :fields => %w(name),
+      :actions => %w(objectives),
+      :action_buttons => ['select_year(@distinct_years,'+params[:year]+')']
+    }
+	render :layout => false
+  end
+  
 end

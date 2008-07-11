@@ -5,6 +5,11 @@
 <% form_for :user do |f| -%>
 		<%= render :partial => "form", :locals => { :f => f } %>
 
+Permissões:<br/><br/>
+ Professor <%= check_box_tag("prof", value = "1", checked = true) %><br/>
+Administrador	<%= check_box_tag("admin", value = "1", checked = false)%>
+
+<br/>
 <p>
 	<%= submit_tag "Sign up" %>
 </p>

@@ -1,6 +1,6 @@
 <h1>Editando Objetivo </h1>
 
-<% form_for(:objective, :url => { :controller => "objectives", :action => "update_obj", :id=> params[:id],  }) do |f| %>
+<% form_for(:objective, @obj, :url => { :controller => "objectives", :action => "update_obj", :id=> params[:id]  }) do |f| %>
 
  	<p><label for="name">Nome</label><br/>
 	<%= f.text_field :name %></p>

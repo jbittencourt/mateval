@@ -8,7 +8,7 @@
 				<%=link_to_remote("Novo", :update => "add_content", :url => { :action => "new"},
                     :complete => "Application.showAddArea();") if button == 'add'%>
 
-				<%=link_to_remote("Novo Objetivo", :update => "add_content", :url => { :controller => "objectives", :action => "new", :id => params[:id]},
+				<%=link_to_remote("Novo Objetivo", :update => "add_content", :url => { :controller => "objectives", :action => "newobj", :id => params[:id]},
                     :complete => "Application.showAddArea();") if button == 'add_obj'%>
 
 					<%=link_to_remote("Novo", :update => "add_content", :url => { :action => "signup"},
@@ -18,7 +18,7 @@
 			<% end %>
 		</div>
     </div>
-    <div class="dashboard-content">
+    <div class="dashboard-content" id="dashboard_content">
         <table class="datagrid" cellspacing="0" cellpadding="0">
         	<thead>
         		<tr>
@@ -54,7 +54,9 @@
                              "<td class='row_objectives'>" 
                          end
                     %>
-                        <%@datagrid[:actions].each do |action|%>
+                        <%@datagrid[:actions].each do |action|
+                        #### Clasrooms ####%>
+                        		
                             <%=link_to_remote("Ver", :update => "item_content_"+item.id.to_s, 
                                 :url => { :action => "show", :id => item.id },
                                 :complete => "Application.showEntry(request, '"+item.id.to_s+"')") if action == 'view'
@@ -65,7 +67,8 @@
                             %>
                             <%=link_to("Deletar", { :action => "delete", :id => item.id }, :confirm => "Você tem certeza?") if      action == 'delete' %>
 
-									<% #### Objectives  #### %>
+									<% #### Objectives  #### 
+									%>
 									<%=link_to("Deletar", { :controller => "objectives", :action => "delete", :id => item.id, :classroom_id => params[:id] }, :confirm => "Você tem certeza?") if      action == 'delete_obj' %>
 
 							      <%=link_to_remote("Editar ", :update => "item_content_"+item.id.to_s, 
@@ -73,12 +76,24 @@
                             %>
 					
                            <%= if action == 'objectives':
-                               # link_to_remote( image_tag("logged/target_"+(count%2).to_s+".jpg" , :class => "signin", :alt => "Objetivos") +
-                              #   "objetivos" , :update=>"dashboard" , :url =>{:action => "objectives" , :id => item.id } )
+
                                 link_to ( image_tag("logged/target_"+(count%2).to_s+".jpg" , :class => "signin", :alt => "Objetivos") +
                                  "objetivos" , :action => "objectives" , :id => item.id )
                                end %>
-									
+										
+										<% #### Users ####
+										
+										%>
+ 							      <%= link_to_remote("Ver", :update => "item_content_"+item.id.to_s, 
+                                :url => {:controller=> "account", :action => "show", :id => item.id }, :method => :get,
+                                :complete => "Application.showEntry('"+item.id.to_s+"')") if action == 'edit_user'
+                            %>
+							      <%= link_to_remote("Editar", :update => "item_content_"+item.id.to_s, 
+                                :url => {:controller=> "account", :action => "edit", :id => item.id }, :method => :get,
+                                :complete => "Application.showEntry('"+item.id.to_s+"')") if action == 'edit_user'
+                            %>
+                            <%= link_to("Deletar", { :action => "delete", :id => item.id }, :confirm => "Você tem certeza?") if      action == 'delete_user' %>
+                               
                         <% end %>
                     </td>
                 </tr>

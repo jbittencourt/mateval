@@ -16,9 +16,9 @@ class AccountController < ResourceController::Base
     @datagrid = {
       :list => User.find(:all),
       :title => "Administrar usuários",
-      :header => %w(Nome Login Email),
-      :fields => %w(name username email),
-      :actions => %w(view edit delete),
+      :header => %w(Nome Login),
+      :fields => %w(name username),
+      :actions => %w(view_user edit_user delete_user),
       :action_buttons => ['add_user']
     }
   end
@@ -48,10 +48,18 @@ class AccountController < ResourceController::Base
   def signup
     @user = User.new(params[:user])
 	 return unless request.post?
+	 y params[:prof]
+	 y params[:admin]
 	#---
+	if params[:prof] == "1" 
 		r = Role.new
-		r.title = "prof"
+	 	r = Role.find(2)
+	end
+	
+	if params[:admin] == "1" 
+		r = Role.find(1)
 		@user.roles << r
+	end
 	#---
 	@user.save!
 	redirect_back_or_default(:controller => '/account', :action => 'list')
@@ -79,16 +87,50 @@ class AccountController < ResourceController::Base
     render :layout => false
   end
   
-  def update
-    user = Classroom.find(params[:id])
-    user.name = params[:user][:name]
-    user.year = params[:user][:username]
-    user.password = params[:user][:password]
-    user.email = params[:user][:email]
-    user.school = params[:user][:school]
-    user.city = params[:user][:city]
-    user.state = params[:user][:state]
-    user.save
+  def refresh
+  
+  	#Update user table
+    usr = User.find(params[:id])
+    usr.name = params[:user][:name]
+    usr.username = params[:user][:username]
+   # usr.password = params[:user][:password]
+	# usr.password_confirmation = params[:user][:password_confirmation]
+	 usr.email = params[:user][:email]
+    usr.school = params[:user][:school]
+    usr.city = params[:user][:city]
+    usr.state = params[:user][:state]
+    usr.save!
+    
+    #refresh admin
+	admin = Role.find(1)
+	prof = Role.find(2)
+	
+   if (params[:admin] == "1") and not usr.roles.include?(admin)
+			usr.roles << admin
+
+	else
+		if  (params[:admin] == nil) and usr.roles.include?(admin)
+			usr.roles.delete(admin) 
+		end
+	end	
+
+	#refresh prof
+	 if (params[:prof] == "1") and not usr.roles.include?(prof)
+			usr.roles << prof
+	else
+		if  (params[:prof] == nil) and usr.roles.include?(prof)
+			usr.roles.delete(prof)
+		end
+	end	
+
+			    
     redirect_to :controller => 'account', :action => 'list'
+
+  end
+  
+  def show
+	@usr = User.find(params[:id])
+	render :layout => false
+
   end
 end

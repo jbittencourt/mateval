@@ -1,6 +1,6 @@
  class ObjectivesController < ResourceController::Base
 
-	def new
+	def newobj
 	
 		render :layout => false	 
 	end
