@@ -1,14 +1,14 @@
-<p>
-  <strong>Title:</strong><%=h @diario_de_classe_post.title %>
-</p>
-<p>
-  <strong>Body:</strong><%=h @diario_de_classe_post.body %>
-</p>
-<p>
-  <strong>User:</strong><%=h @diario_de_classe_post.user_id %>
-</p>
-
-<%= link_to "Comente.", diario_de_classe_post_comments_url(@diario_de_classe_post) %>
-<%= link_to 'Edit', edit_object_url %>
-|
-<%= link_to 'Back', collection_url %>
+<div id="dashboard">
+	<h1 class="section-title">Diário de classe</h1>
+	<%= flash[:notice] %>
+	<div class="post">
+		<h2><%=h @diario_de_classe_post.title %> - <span><%=h @diario_de_classe_post.created_at.strftime('%d/%m/%Y')%></span></h2>
+	    <p><%=h @diario_de_classe_post.body %></p><br />
+		<p>Tags: <%= @diario_de_classe_post.tag_list.join(', ') %></p>
+		<div class="actions">
+			<% link_to "Comente", diario_de_classe_post_comments_url(@diario_de_classe_post) %>
+	    	<%=link_to 'Edit', edit_object_url(@diario_de_classe_post) %>&nbsp; | &nbsp;
+    		<%=link_to 'Destroy', object_url(@diario_de_classe_post), :confirm => 'Você tem certeza?', :method => :delete %>	
+		</div>
+	</div>
+</div>

@@ -1,12 +1,26 @@
-<h1>New Diario De Classe Post</h1>
-
-<%= error_messages_for :diario_de_classe_post %>
-
-<% form_for(:diario_de_classe_post, :url => collection_url) do |f| %>
-  <%= render :partial => "form", :locals => { :f => f } %>
-  <p>
-    <%= submit_tag "Create" %>
-  </p>
-<% end %>
-<br/>
-<%= link_to 'Back', collection_url %>
+<div id="dashboard">
+	<div class="form-box">
+		<h1>Nova anotação no diário	</h1>
+		
+		<%= error_messages_for :diario_de_classe_post %>
+		
+		<% form_for(:diario_de_classe_post, :url => collection_url, :html => {:id => 'diario_post_form'}) do |f| %>
+			<label class="radio-label" for="radio_classrooms">Turma</label>
+			<%=select("diario_de_classe_post", "classroom", 
+				@classrooms.collect {|p| [ p.name, p.id ] }, 
+				{ :include_blank => true }, 
+				{ :onchange =>"loadStudents();"})
+			%>
+			
+			<label class="radio-label" for="radio_student">Aluno</label>
+			<%=select("diario_de_classe_post", "student", ['selecione uma turma'], {}, { :disabled => 'disabled' })%>
+			<div id="type_area" style="display:none;"></div>
+			<%= render :partial => "form", :locals => { :f => f } %>
+			<div class="submit-area">
+				<%=image_tag 'send_post_button.jpg', :class => "submit-button", :onclick => "$('diario_post_form').submit();"%>
+			</div>
+		<% end %>
+		<br/>
+		<%= link_to 'Voltar', collection_url %>
+	</div>
+</div>
