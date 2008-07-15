@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :objectives
   
   map.resources :diario_de_classe_posts, :has_many => :comments
+  #map.resources :diario_de_classe_posts, :as => 'diary'
   
   # Account mapping
   #
@@ -22,7 +23,10 @@ ActionController::Routing::Routes.draw do |map|
   map.login 'login', :controller => 'account', :action => 'login'
   map.logout 'logout', :controller => 'account', :action => 'logout'
   map.signup 'signup', :controller => 'account', :action => 'signup'
-  map.admin 'admin', :controller => 'admin'  
+  map.admin 'admin', :controller => 'admin'
+  
+  #map.diary 'diary', :controller => 'diario_de_classe_posts'
+  
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
