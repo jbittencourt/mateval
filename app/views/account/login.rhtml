@@ -1,16 +1,11 @@
-
-<% form_tag do -%>
-<p><label for="username">Username</label><br/>
-<%= text_field_tag 'username' %></p>
-
-<p><label for="password">Password</label><br/>
-<%= password_field_tag 'password' %></p>
-
-<!-- Uncomment this if you want this functionality
-<p><label for="remember_me">Remember me:</label>
-<%= check_box_tag 'remember_me' %></p>
--->
-
-<p><%= submit_tag 'Log in' %></p>
-<% end -%>
-<%= link_to 'Sign up now', :action => 'signup'%>
+<div>
+	<%= flash[:notice] %>
+    <div><%=image_tag("unlogged/entrance.jpg")%></div>
+</div>
+<div class="clear"></div>
+<div class="signin_box">
+    O MatEval auxilia o professor a planejar, regostrar e avaliar as atividades desenvolvidas pelos alunos em sala de aula.<br />
+    <%=link_to image_tag("unlogged/signin.jpg", :class => "signin", :alt => "Cadastro para novos professores"), 
+        { :action => "signup" }
+    %>
+</div>
