@@ -20,3 +20,15 @@ var Application = {
     }
     
 }
+
+function loadStudents()
+{
+	var select = 'diario_de_classe_post_classroom';
+	var student_select = 'diario_de_classe_post_student';
+	new Ajax.Updater(student_select, 
+		'/classrooms/list_students/'+$(select)[$(select).selectedIndex].value,
+		{ evalScripts : true, method : 'get' }
+	);
+	$(student_select).disabled = false;
+	
+}
