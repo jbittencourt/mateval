@@ -23,7 +23,7 @@ module ApplicationHelper
 		if logged_in?
 			output = []
 			output << link_to(image_tag("/images/logged/my_classes.png"), {:controller => 'classrooms'}) 
-			output << image_tag("/images/logged/class_diary.png")
+			output << link_to(image_tag("/images/logged/class_diary.png"), {:controller => 'diario_de_classe_posts'})
       
       if is_admin?
         output << link_to(image_tag("/images/logged/class_diary.jpg"), {:controller => 'admin'})
