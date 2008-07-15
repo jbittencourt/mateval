@@ -100,11 +100,12 @@ body {
 		width: 160px;
 	}
 	
-.button-to input {
+.button-to input, input.login-button {
 	border: solid 2px #f4d0a2;
 	width: 70px;
 	color: #f15a24;
 	font-weight: bold;
+	margin-top: 10px;
 }
 
 .minor-box {
@@ -226,4 +227,4 @@ a.create {
 }
 
 input[type=radio] { width: 14px; }
-label.radio-label { display: inline; }
+label.radio-label { display: none; }
