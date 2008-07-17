@@ -5,6 +5,7 @@
 		<!-- Action area -->
 		<div class="action-area">
 			<%@datagrid[:action_buttons].each do |button|%>
+			
 				<%=link_to_remote("Novo", :update => "add_content", :url => { :action => "new"},
                     :complete => "Application.showAddArea();") if button == 'add'%>
 
@@ -75,11 +76,19 @@
                                 :url => { :controller => "objectives", :action => "edit", :id => item.id, :classroom_id => params[:id] }, :method => :get, :complete => "Application.showEntry('"+item.id.to_s+"')") if action == 'edit_obj'
                             %>
 					
-                           <%= if action == 'objectives':
-
+                           <%= 
+                           if action == 'objectives':
+                           
                                 link_to ( image_tag("logged/target_"+(count%2).to_s+".jpg" , :class => "signin", :alt => "Objetivos") +
                                  "objetivos" , :action => "objectives" , :id => item.id )
-                               end %>
+                            end 
+                            
+                            	if action ==  "atrb"
+                           		link_to_remote ("selecionar professores" , :update => "item_content_"+item.id.to_s, :url=> {:action=>"list_users", :id=> item.id}, :complete => "Application.showEntry('"+item.id.to_s+"')")
+                           	
+                           	else
+ 
+                          end %>
 										
 										<% #### Users ####
 										

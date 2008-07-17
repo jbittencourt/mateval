@@ -114,4 +114,67 @@ class ClassroomsController < ResourceController::Base
 	render :layout => false
   end
   
+  
+  def list_users
+  		
+  		cr = Classroom.find(params[:id])
+  		@users_assigned = cr.users
+  		@users = User.find(:all)
+  		render :layout => false
+
+  end
+ 		
+  def assign
+  
+		cr = Classroom.find(params[:id])
+		cr.users << User.find(params[:uid])
+		render :partial => "assign", :layout => false, :uid => params[:uid], :id => params[:id]
+		
+		#respond_to do |format|
+		#render :update do |page|
+		#	format.js {
+		#		page.replace_html "toggle#{params[:uid]}", :partial => "assign", :uid => u.id, :id => params[:id]
+		#	}
+		#	end
+		#end
+		
+  end 
+  
+  def unassign
+  
+		cr = Classroom.find(params[:id])
+		cr.users.delete(User.find(params[:uid]))
+		render :partial => "unassign", :layout => false, :uid => params[:uid], :id => params[:id] 
+		
+		#respond_to do |format|
+		#render :update do |page|
+		#	format.js {
+		#		page.replace_html "toggle#{params[:uid]}", :partial => "unassign"
+		#	}
+		#end
+		#end
+
+		
+  end
+  
+  
+  def atrib_classrooms
+  
+     #get all the classrooms fom the user
+  		classrooms = Classroom.find(:all)
+     
+    #get distinct years from his classrooms
+    @distinct_years = Classroom.find(:all).map{ |i| i.year }.uniq
+    
+    @datagrid = { 
+      :title => 'Turmas', 
+      :list => classrooms,
+      :header => %w(Nome),
+      :fields => %w(name),
+      :actions => %w(atrb),
+      :action_buttons => ['select_year(@distinct_years,nil)']
+    }
+
+  end
+  
 end

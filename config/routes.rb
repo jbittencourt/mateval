@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
-  map.resources :classrooms, :collection => {:manager => :get, :create => :post}
+  map.resources :classrooms, :collection => {:manager => :get, :create => :post, :atrib_classrooms => :get}
    
   map.resources :subjects
   

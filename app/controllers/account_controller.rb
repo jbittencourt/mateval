@@ -42,6 +42,9 @@ class AccountController < ResourceController::Base
       
       redirect_back_or_default(:controller => '/classrooms', :action => 'index')
       #flash[:notice] = ""
+    else
+      redirect_back_or_default(:controller => '/account', :action => 'index')
+      
     end
   end
   

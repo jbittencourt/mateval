@@ -1,5 +1,6 @@
 <ul>
 	<li><%=link_to "Gerenciar turmas", manager_classrooms_url %></li>
 	<li><%=link_to "Gerenciar usuários" , list_account_url%></li>
+	<li><%=link_to "Atribuir professores a turmas" , { :controller => "classrooms", :action=> "atrib_classrooms"} %></li>
 </ul>
 
