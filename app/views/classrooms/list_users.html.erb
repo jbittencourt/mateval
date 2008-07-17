@@ -1,0 +1,18 @@
+<% @users.each do |u| %>
+
+	<% if @users_assigned.include?(u) %>
+		<%= u.name %> - <span id="toggle<%=u.id%>"> 
+		<%= link_to_remote( :Desvincular ,  :update => "toggle#{u.id}",  :url => {:action => "unassign", :uid=> u.id, :id=>params[:id] } ) %>
+		 </span> 
+	<% end %>
+	
+	<% if (!@users_assigned.include?(u)) && (u != nil) %>
+		<%= u.name %> - <span id="toggle<%=u.id%>"> 
+		<%=link_to_remote( :Vincular ,  :update =>"toggle#{u.id}", :url => {:action => "assign", :uid=> u.id, :id=>params[:id] } ) %>
+		  </span>
+	<% end %>
+	
+	<br/>
+	
+<% end %>
+

@@ -6,6 +6,7 @@ class Classroom < ActiveRecord::Base
   has_and_belongs_to_many :students
   has_many :diario_de_classe_posts
   has_many :objectives 
+  has_many :students
 
   # TODO: deprecated, maybe needs refactoring
   def list_students_by(year=Date.today.to_s[0,4])

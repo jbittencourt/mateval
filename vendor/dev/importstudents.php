@@ -40,6 +40,7 @@
 		`cep`, 
 		`transfered`, 
 		`obs`, 
+		`classroom_id`,
 		`created_at`, 
 		`updated_at` ) 
 		VALUES (
@@ -53,6 +54,7 @@
 		'".$s['cep']."', 
 		'".$s['transfered']."', 
 		'".$s['obs']."', 
+		'".$s['classroom_id']."', 
 		'".$date."', 
 		'".$date."' )";
 	

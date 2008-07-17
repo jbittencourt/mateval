@@ -3,8 +3,13 @@
 	<%= flash[:notice] %>
 	<div class="post">
 		<h2><%=h @diario_de_classe_post.title %> - <span><%=h @diario_de_classe_post.created_at.strftime('%d/%m/%Y')%></span></h2>
+		<h3><%= if @student != nil
+						@classroom.name + " - " + @student.name
+					else
+						@classroom.name
+					end
+				%></h3>
 	    <p><%=h @diario_de_classe_post.body %></p><br />
-		<p>Tags: <%= @diario_de_classe_post.tag_list.join(', ') %></p>
 		<div class="actions">
 			<% link_to "Comente", diario_de_classe_post_comments_url(@diario_de_classe_post) %>
 	    	<%=link_to 'Edit', edit_object_url(@diario_de_classe_post) %>&nbsp; | &nbsp;

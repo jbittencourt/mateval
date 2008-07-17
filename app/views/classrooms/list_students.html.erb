@@ -1,4 +1,4 @@
 <option value="">selecione um aluno</option>
-<% @classroom.students.each do |student| %>
+<% @students.each do |student| %>
 	<option value="<%=student.id%>"><%=student.name%></option>
 <% end %>

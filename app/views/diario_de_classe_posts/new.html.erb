@@ -9,7 +9,7 @@
 			<%=select("diario_de_classe_post", "classroom", 
 				@classrooms.collect {|p| [ p.name, p.id ] }, 
 				{ :include_blank => true }, 
-				{ :onchange =>"loadStudents();"})
+				{ :onchange =>"loadStudents(diario_de_classe_post_classroom,diario_de_classe_post_student);"})
 			%>
 			
 			<label class="radio-label" for="radio_student">Aluno</label>

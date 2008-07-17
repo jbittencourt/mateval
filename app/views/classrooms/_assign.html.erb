@@ -1,0 +1,1 @@
+<%= link_to_remote( :Desvincular ,  :update => "toggle#{params[:uid]}",  :url => {:action => "unassign", :uid=> params[:uid], :id=>params[:id] } ) %>

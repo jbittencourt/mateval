@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
   has_many :evaluations
-  
+  belongs_to :classroom
   # OLD relationships
   has_and_belongs_to_many :classrooms
   #as_and_belongs_to_many :diario_de_classe_posts

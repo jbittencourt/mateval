@@ -21,10 +21,10 @@ var Application = {
     
 }
 
-function loadStudents()
+function loadStudents(select,student_select)
 {
-	var select = 'diario_de_classe_post_classroom';
-	var student_select = 'diario_de_classe_post_student';
+	//var select = 'diario_de_classe_post_classroom';
+	//var student_select = 'diario_de_classe_post_student';
 	new Ajax.Updater(student_select, 
 		'/classrooms/list_students/'+$(select)[$(select).selectedIndex].value,
 		{ evalScripts : true, method : 'get' }

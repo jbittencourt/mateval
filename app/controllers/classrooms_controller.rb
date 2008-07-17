@@ -85,7 +85,7 @@ class ClassroomsController < ResourceController::Base
   end
   
   def list_students
-    @classroom = Classroom.find(params[:id])
+    @students = Student.find(:all, :conditions=> " classroom_id=	#{params[:id]}")
     render :layout => false
   end
   

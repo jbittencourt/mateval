@@ -1,8 +1,22 @@
-<div id="dashboard">
+
+<div id="dashboard" onload="loadStudents(diario_de_classe_post_classroom_id,diario_de_classe_post_student_id);">
 	<div class="form-box">
 		<h1>Editando anotação do diário</h1>
 		<%= error_messages_for :diario_de_classe_post %>
-		<% form_for(:diario_de_classe_post, :url => object_url, :html => { :method => :put , :id => 'diario_post_form'}) do |f| %>
+		<% form_for(:diario_de_classe_post, :url => object_url, :html => { :method => :put , :id => 'diario_post_form' ,  :onload => "loadStudents(diario_de_classe_post_classroom_id,diario_de_classe_post_student_id);"}) do |f| %>
+		
+		<label class="radio-label" for="radio_classrooms">Turma</label>
+		<%= select("diario_de_classe_post", :classroom_id, 
+			@classrooms.collect {|p| [ p.name, p.id ] }, 
+			{ :include_blank => true }, 
+			{ :onchange =>"loadStudents(diario_de_classe_post_classroom_id,diario_de_classe_post_student_id);"})
+		%>
+		
+		<label class="radio-label" for="radio_student">Aluno</label>
+			<%=select("diario_de_classe_post", "student_id" , @student.collect {|p| [ p.name, p.id ] } , { :include_blank => true})%>
+
+		<div id="type_area" style="display:none;"></div>
+		
 		  <%= render :partial => "form", :locals => { :f => f } %>
 		  <div class="submit-area">
 		  	<%=image_tag 'send_post_button.jpg', :class => "submit-button", :onclick => "$('diario_post_form').submit();"%>
@@ -13,3 +27,4 @@
 		<%= link_to 'Voltar', collection_url %>
 	</div>
 </div>
+
