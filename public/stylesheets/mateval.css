@@ -209,8 +209,11 @@ input, textarea {
 	margin-top: 10px; 
 }
 
-#dashboard .post {
-	padding: 15px;
+#dashboard .post-button {
+	/*padding: 15px;*/
+	width: 72px;
+	margin-top: 15px;
+	
 }
 
 #dashboard .submit-area { 

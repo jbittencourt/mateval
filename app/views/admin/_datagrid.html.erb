@@ -1,3 +1,5 @@
+
+<% y @datagrid %>
 <div id="dashboard">
     <div class="dash-head">
     	<!-- Title of datagrid -->
@@ -9,7 +11,7 @@
 				<%=link_to_remote("Novo", :update => "add_content", :url => { :action => "new"},
                     :complete => "Application.showAddArea();") if button == 'add'%>
 
-				<%=link_to_remote("Novo Objetivo", :update => "add_content", :url => { :controller => "objectives", :action => "newobj", :id => params[:id]},
+				<%=link_to_remote("Novo", :update => "add_content", :url => { :controller => "objectives", :action => "newobj", :id => params[:id]},
                     :complete => "Application.showAddArea();") if button == 'add_obj'%>
 
 					<%=link_to_remote("Novo", :update => "add_content", :url => { :action => "signup"},
@@ -49,6 +51,7 @@
                     <% end %>
                     <td><%=item.created_at.strftime("%d/%m/%Y")%></td>
                     <td><%=item.updated_at.strftime("%d/%m/%Y")%></td>
+                    
                     <%= if @datagrid[:actions].include?('objectives'): 
                             "<td>"
                          else
@@ -77,10 +80,10 @@
                             %>
 					
                            <%= 
-                           if action == 'objectives':
+                           if action == "objectives":
                            
-                                link_to ( image_tag("logged/target_"+(count%2).to_s+".jpg" , :class => "signin", :alt => "Objetivos") +
-                                 "objetivos" , :action => "objectives" , :id => item.id )
+                                link_to ( image_tag("logged/target_"+(count%2).to_s+".jpg" , :class => "signin", :alt => "Objetivos") + "objetivos" , :url=> {:controller=>"objectives",:action => "objectives"} , :id => item.id )
+                                 y "aqui"
                             end 
                             
                             	if action ==  "atrb"
