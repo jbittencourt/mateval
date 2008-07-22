@@ -14,7 +14,7 @@ class AccountController < ResourceController::Base
   
   def list
     @datagrid = {
-      :list => User.find(:all),
+      :list => User.paginate (:page=> params[:page], :order => 'updated_at DESC', :per_page => 2),
       :title => "Administrar usuários",
       :header => %w(Nome Login),
       :fields => %w(name username),

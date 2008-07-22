@@ -1,12 +1,18 @@
 class ClassroomsController < ResourceController::Base
   before_filter :login_required
-  access_control [:create, :new, :edit ,:manager] => '(admin)'	
+  access_control [:create, :new, :edit ,:manager, :atrib_classrooms] => '(admin)'	
   
   def index
-  
+  		 
      #get all the classrooms fom the user
-  		classrooms = current_user.classrooms.find(:all)
-     
+  	  #classrooms = current_user.classrooms.find(:all)
+	if (params[:year] != nil) && (params[:year].strip != "")
+  		classrooms = current_user.classrooms.find(:all, :conditions=> "year=	#{params[:year]}").paginate :page=> params[:page], :order => 'updated_at DESC', :per_page => 2
+	else
+		classrooms = current_user.classrooms.paginate :page=> params[:page], :order => 'updated_at DESC', :per_page => 2
+	end
+     #@posts = Post.paginate_by_board_id @board.id, :page => params[:page], :order => 'updated_at DESC'
+
     #get distinct years from his classrooms
     @distinct_years = current_user.classrooms.find(:all).map{ |i| i.year }.uniq
     
@@ -16,7 +22,7 @@ class ClassroomsController < ResourceController::Base
       :header => %w(Nome),
       :fields => %w(name),
       :actions => %w(objectives),
-      :action_buttons => ['select_year(@distinct_years,nil)']
+      :action_buttons => ["select_year(@distinct_years,'index')"]
     }
 
   end
@@ -24,7 +30,8 @@ class ClassroomsController < ResourceController::Base
   def objectives
 	
     classroom = Classroom.find(params[:id])
-	 objectives = classroom.objectives
+	 objectives = classroom.objectives.paginate :page=> params[:page], :order => 'updated_at DESC', :per_page => 2
+	 
     @datagrid = { 
       :title => 'Objetivos para turma ' + classroom.name, 
       :list => objectives,
@@ -37,19 +44,23 @@ class ClassroomsController < ResourceController::Base
   end
 
   def manager
-    @distinct_years = Classroom.find(:all).map{ |i| i.year }.uniq
+	@distinct_years = Classroom.find(:all).map{ |i| i.year }.uniq
+	
+	if (params[:year] != nil) && (params[:year].strip != "")
+		classroom = Classroom.find(:all,:conditions=> " year=	#{params[:year]}" ).paginate(:page=> params[:page], :order => 'updated_at DESC', :per_page => 2)
+	else
+		classroom = Classroom.paginate(:page=> params[:page], :order => 'updated_at DESC', :per_page => 2)
+	end
+		place = "manager"
     @datagrid = { 
       :title => 'Administração de Turmas', 
-      :list => Classroom.find(:all),
+      :list => classroom,
       :header => %w(Nome Ano),
       :fields => %w(name year),
       :actions => %w(edit delete),
-      :action_buttons => ['select_year(@distinct_years,nil)', 'add']
+      :action_buttons => ["select_year(@distinct_years,'manager')", 'add']
     }
-    
-   def update_classrooms
-   	render :text=>"YAARRR!"
-   end
+
     
   end
   
@@ -93,10 +104,10 @@ class ClassroomsController < ResourceController::Base
   
      #get all the classrooms fom the select year, or all of it
      if params[:year] == ""
-     		classrooms = current_user.classrooms.find(:all)
+     		classrooms = current_user.classrooms.paginate :page=> params[:page], :order => 'updated_at DESC', :per_page => 2
      		params[:year] = "nil"
      else
-    		classrooms = current_user.classrooms.find(:all, :conditions=> "year=#{params[:year]}" )
+    		classrooms = current_user.classrooms.find(:all, :conditions=> "year=#{params[:year]}" ).paginate :page=> params[:page], :order => 'updated_at DESC', :per_page => 2
      end
      
      
@@ -159,20 +170,20 @@ class ClassroomsController < ResourceController::Base
   
   
   def atrib_classrooms
-  
-     #get all the classrooms fom the user
-  		classrooms = Classroom.find(:all)
-     
-    #get distinct years from his classrooms
+  	if (params[:year] != nil) && (params[:year].strip != "")
+     classroom = Classroom.find(:all,:conditions=> " year=	#{params[:year]}" ).paginate(:page=> params[:page], :order => 'updated_at DESC', :per_page => 2)
+	else
+  		classroom = Classroom.paginate :page=> params[:page], :order => 'updated_at DESC', :per_page => 2
+    end 
     @distinct_years = Classroom.find(:all).map{ |i| i.year }.uniq
     
     @datagrid = { 
       :title => 'Turmas', 
-      :list => classrooms,
+      :list => classroom,
       :header => %w(Nome),
       :fields => %w(name),
       :actions => %w(atrb),
-      :action_buttons => ['select_year(@distinct_years,nil)']
+      :action_buttons => ["select_year(@distinct_years,'atrib_classrooms')"]
     }
 
   end

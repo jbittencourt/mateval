@@ -9,8 +9,11 @@
 				<%=link_to 'Show', object_url(post) %>&nbsp; | &nbsp;
 		    	<%=link_to 'Edit', edit_object_url(post) %>&nbsp; | &nbsp;
 	    		<%=link_to 'Destroy', object_url(post), :confirm => 'Você tem certeza?', :method => :delete %>	
-			</div>
+			</div><br/>
 		</div>
 	<% end %>
+	<br/>
+	<%= will_paginate( @diario_de_classe_posts,options = { :prev_label => "← Anterior", :next_label => "Próximo →"})   %>
+	<br/>
   <%= link_to 'Criar nova entrada', new_object_url, {:class => 'create'} %>
 </div>

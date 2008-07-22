@@ -3,7 +3,7 @@ class DiarioDeClassePostsController < ResourceController::Base
   before_filter :login_required
 
   def index
-    @diario_de_classe_posts = DiarioDeClassePost.find(:all, :conditions => "user_id = "+current_user.id.to_s, :order => "created_at DESC")
+    @diario_de_classe_posts = DiarioDeClassePost.find(:all, :conditions => "user_id = "+current_user.id.to_s, :order => "created_at DESC").paginate(:page=> params[:page], :order => 'updated_at DESC', :per_page => 2)
   end
   
   def create

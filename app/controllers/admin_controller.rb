@@ -1,6 +1,6 @@
 	class AdminController < ApplicationController
   before_filter :login_required
-  access_control :signup => '(admin)'
+  access_control :index => '(admin)'
   def index
     
   end
