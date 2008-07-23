@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 12) do
 
   create_table "classrooms", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(:version => 11) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "student_id"
+    t.integer  "classroom_id"
   end
 
   create_table "diario_de_classe_posts_parameters", :id => false, :force => true do |t|
@@ -126,6 +128,7 @@ ActiveRecord::Schema.define(:version => 11) do
     t.text     "obs"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "classroom_id"
   end
 
   create_table "subjects", :force => true do |t|
