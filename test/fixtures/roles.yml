@@ -1,0 +1,10 @@
+admin:
+	id:1
+	title: admin
+	info: administrador
+	 created_at: <%= 5.days.ago.to_s :db %>
+prof:
+	id:2
+	title: prof
+	info: professor
+	 created_at: <%= 5.days.ago.to_s :db %>
